@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import "./App.css";
 
 const BASE = import.meta.env.BASE_URL;
-console.log("URL", `${BASE}/img/the-new-way-forward.png`)
+console.log("URL", `${BASE}/img/the-new-way-forward.png`);
 // 🔊 All your songs with their own accent colors
 const tracks = [
     {
