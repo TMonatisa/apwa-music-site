@@ -8,8 +8,8 @@ const tracks = [
     {
         id: "new-way-forward",
         title: "The New Way Forward Theme",
-        cover: "${BASE}/img/the-new-way-forward.png",
-        src: "${BASE}img/audio/the-new-way-forward.mp3",
+        cover: `${BASE}/img/the-new-way-forward.png`,
+        src: `${BASE}img/audio/the-new-way-forward.mp3`,
         link: "https://linktr.ee/APWA_Official",
         accent: "#d29a00", // yellow/gold
     },
