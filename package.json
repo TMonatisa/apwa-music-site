@@ -1,9 +1,9 @@
 {
   "name": "apwa-music-site",
+  "homepage": "https://tmonatisa.github.io/apwa-music-site/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://tmonatisa.github.io/apwa-music-site/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

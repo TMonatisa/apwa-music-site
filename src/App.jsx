@@ -13,11 +13,35 @@ const tracks = [
         accent: "#d29a00", // yellow/gold
     },
     {
-        id: "second-song",
-        title: "Second Song",
+        id: "the-great-william",
+        title: "The Great William",
         cover: "/img/second-song-cover.jpg",
         src: "/audio/second-song.mp3",
-        link: "https://example.com",
+        link: "https://linktr.ee/APWA_Official",
+        accent: "#4a90e2", // blue example
+    },
+    {
+        id: "vusi-storm",
+        title: "Vusi Storm",
+        cover: "/img/second-song-cover.jpg",
+        src: "/audio/second-song.mp3",
+        link: "https://linktr.ee/APWA_Official",
+        accent: "#4a90e2", // blue example
+    },
+    {
+        id: "wade-alucard",
+        title: "Wade Alucard",
+        cover: "/img/second-song-cover.jpg",
+        src: "/audio/second-song.mp3",
+        link: "https://linktr.ee/APWA_Official",
+        accent: "#4a90e2", // blue example
+    },
+    {
+        id: "alex-desire",
+        title: "Alex Desire",
+        cover: "/img/second-song-cover.jpg",
+        src: "/audio/second-song.mp3",
+        link: "https://linktr.ee/APWA_Official",
         accent: "#4a90e2", // blue example
     },
     // add more tracks here, each with its own accent
