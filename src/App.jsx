@@ -3,14 +3,13 @@ import { useEffect, useRef, useState } from "react";
 import "./App.css";
 
 const BASE = import.meta.env.BASE_URL;
-console.log("URL", `${BASE}/img/the-new-way-forward.png`);
 // 🔊 All your songs with their own accent colors
 const tracks = [
     {
         id: "new-way-forward",
         title: "The New Way Forward Theme",
-        cover: `${BASE}/img/the-new-way-forward.png`,
-        src: `${BASE}/img/audio/the-new-way-forward.mp3`,
+        cover: "/img/the-new-way-forward.png",
+        src: "/audio/the-new-way-forward.mp3",
         link: "https://linktr.ee/APWA_Official",
         accent: "#d29a00", // yellow/gold
     },
