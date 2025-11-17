@@ -2,32 +2,23 @@ import { Routes, Route, Link, useParams, useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import "./App.css";
 
-const BASE = import.meta.env.BASE_URL;
 // 🔊 All your songs with their own accent colors
 const tracks = [
     {
         id: "new-way-forward",
         title: "The New Way Forward Theme",
-        cover: "https://tmonatisa.github.io/apwa-music-site/img/the-new-way-forward.png",
+        cover: "/img/the-new-way-forward.png",
         src: "/audio/the-new-way-forward.mp3",
         link: "https://linktr.ee/APWA_Official",
         accent: "#d29a00", // yellow/gold
     },
     {
-        id: "the-great-william",
-        title: "The Great William",
-        cover: "/img/the-great-william.jpg",
-        src: "/audio/second-song.mp3",
-        link: "https://linktr.ee/APWA_Official",
-        accent: "#04f7ffff", // blue example
-    },
-    {
-        id: "vusi-storm",
-        title: "Vusi Storm",
+        id: "second-song",
+        title: "Second Song",
         cover: "/img/second-song-cover.jpg",
         src: "/audio/second-song.mp3",
-        link: "https://linktr.ee/APWA_Official",
-        accent: "#302a85ff", // blue example
+        link: "https://example.com",
+        accent: "#4a90e2", // blue example
     },
     // add more tracks here, each with its own accent
 ];
