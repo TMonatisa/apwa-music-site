@@ -2,50 +2,51 @@ import { Routes, Route, Link, useParams, useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import "./App.css";
 
-const BASE = import.meta.env.BASE_URL;
+// const BASE = import.meta.env.BASE_URL;
 
 // 🔊 All your songs with their own accent colors
 const tracks = [
     {
         id: "new-way-forward",
         title: "The New Way Forward Theme",
-        cover: `${BASE}img/the-new-way-forward.png`,
-        src: `${BASE}audio/the-new-way-forward.mp3`,
+        cover: "https://tmonatisa.github.io/apwa-music-site/img/the-new-way-forward.png",
+        src: "https://tmonatisa.github.io/apwa-music-site/audio/the-new-way-forward.mp3",
         link: "https://linktr.ee/APWA_Official",
-        accent: "#d29a00", // yellow/gold
+        accent: "#d29a00",
     },
-    {
-        id: "the-great-william",
-        title: "The Great William",
-        cover: `${BASE}img/the-new-way-forward.png`,
-        src: `${BASE}audio/the-new-way-forward.mp3`,
-        link: "https://linktr.ee/APWA_Official",
-        accent: "#4a90e2",
-    },
-    {
-        id: "vusi-storm",
-        title: "Vusi Storm",
-        cover: `${BASE}img/the-new-way-forward.png`,
-        src: `${BASE}audio/the-new-way-forward.mp3`,
-        link: "https://linktr.ee/APWA_Official",
-        accent: "#4a90e2",
-    },
-    {
-        id: "wade-alucard",
-        title: "Wade Alucard",
-        cover: `${BASE}img/the-new-way-forward.png`,
-        src: `${BASE}audio/the-new-way-forward.mp3`,
-        link: "https://linktr.ee/APWA_Official",
-        accent: "#4a90e2",
-    },
-    {
-        id: "alex-desire",
-        title: "Alex Desire",
-        cover: `${BASE}img/the-new-way-forward.png`,
-        src: `${BASE}audio/the-new-way-forward.mp3`,
-        link: "https://linktr.ee/APWA_Official",
-        accent: "#4a90e2",
-    },
+    // },
+    // {
+    //     id: "the-great-william",
+    //     title: "The Great William",
+    //     cover: `${BASE}img/the-new-way-forward.png`,
+    //     src: `${BASE}audio/the-new-way-forward.mp3`,
+    //     link: "https://linktr.ee/APWA_Official",
+    //     accent: "#4a90e2",
+    // },
+    // {
+    //     id: "vusi-storm",
+    //     title: "Vusi Storm",
+    //     cover: `${BASE}img/the-new-way-forward.png`,
+    //     src: `${BASE}audio/the-new-way-forward.mp3`,
+    //     link: "https://linktr.ee/APWA_Official",
+    //     accent: "#4a90e2",
+    // },
+    // {
+    //     id: "wade-alucard",
+    //     title: "Wade Alucard",
+    //     cover: `${BASE}img/the-new-way-forward.png`,
+    //     src: `${BASE}audio/the-new-way-forward.mp3`,
+    //     link: "https://linktr.ee/APWA_Official",
+    //     accent: "#4a90e2",
+    // },
+    // {
+    //     id: "alex-desire",
+    //     title: "Alex Desire",
+    //     cover: `${BASE}img/the-new-way-forward.png`,
+    //     src: `${BASE}audio/the-new-way-forward.mp3`,
+    //     link: "https://linktr.ee/APWA_Official",
+    //     accent: "#4a90e2",
+    // },
 ];
 
 function formatTime(time) {
