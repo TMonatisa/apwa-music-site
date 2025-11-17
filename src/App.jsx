@@ -1,52 +1,59 @@
-import { Routes, Route, Link, useParams, useNavigate } from "react-router-dom";
+import { Routes, Route, useParams } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import "./App.css";
-
-// const BASE = import.meta.env.BASE_URL;
 
 // 🔊 All your songs with their own accent colors
 const tracks = [
     {
         id: "new-way-forward",
         title: "The New Way Forward Theme",
-        cover: "https://tmonatisa.github.io/apwa-music-site/img/the-new-way-forward.png",
-        src: "https://tmonatisa.github.io/apwa-music-site/audio/the-new-way-forward.mp3",
+        cover:
+            "https://tmonatisa.github.io/apwa-music-site/img/the-new-way-forward.png",
+        src:
+            "https://tmonatisa.github.io/apwa-music-site/audio/the-new-way-forward.mp3",
         link: "https://linktr.ee/APWA_Official",
-        accent: "#d29a00",
+        accent: "#d29a00", // yellow/gold
     },
-    // },
-    // {
-    //     id: "the-great-william",
-    //     title: "The Great William",
-    //     cover: `${BASE}img/the-new-way-forward.png`,
-    //     src: `${BASE}audio/the-new-way-forward.mp3`,
-    //     link: "https://linktr.ee/APWA_Official",
-    //     accent: "#4a90e2",
-    // },
-    // {
-    //     id: "vusi-storm",
-    //     title: "Vusi Storm",
-    //     cover: `${BASE}img/the-new-way-forward.png`,
-    //     src: `${BASE}audio/the-new-way-forward.mp3`,
-    //     link: "https://linktr.ee/APWA_Official",
-    //     accent: "#4a90e2",
-    // },
-    // {
-    //     id: "wade-alucard",
-    //     title: "Wade Alucard",
-    //     cover: `${BASE}img/the-new-way-forward.png`,
-    //     src: `${BASE}audio/the-new-way-forward.mp3`,
-    //     link: "https://linktr.ee/APWA_Official",
-    //     accent: "#4a90e2",
-    // },
-    // {
-    //     id: "alex-desire",
-    //     title: "Alex Desire",
-    //     cover: `${BASE}img/the-new-way-forward.png`,
-    //     src: `${BASE}audio/the-new-way-forward.mp3`,
-    //     link: "https://linktr.ee/APWA_Official",
-    //     accent: "#4a90e2",
-    // },
+    {
+        id: "the-great-william",
+        title: "The Great William",
+        cover:
+            "https://tmonatisa.github.io/apwa-music-site/img/the-new-way-forward.png",
+        src:
+            "https://tmonatisa.github.io/apwa-music-site/audio/the-new-way-forward.mp3",
+        link: "https://linktr.ee/APWA_Official",
+        accent: "#4a90e2",
+    },
+    {
+        id: "vusi-storm",
+        title: "Vusi Storm",
+        cover:
+            "https://tmonatisa.github.io/apwa-music-site/img/the-new-way-forward.png",
+        src:
+            "https://tmonatisa.github.io/apwa-music-site/audio/the-new-way-forward.mp3",
+        link: "https://linktr.ee/APWA_Official",
+        accent: "#4a90e2",
+    },
+    {
+        id: "wade-alucard",
+        title: "Wade Alucard",
+        cover:
+            "https://tmonatisa.github.io/apwa-music-site/img/the-new-way-forward.png",
+        src:
+            "https://tmonatisa.github.io/apwa-music-site/audio/the-new-way-forward.mp3",
+        link: "https://linktr.ee/APWA_Official",
+        accent: "#4a90e2",
+    },
+    {
+        id: "alex-desire",
+        title: "Alex Desire",
+        cover:
+            "https://tmonatisa.github.io/apwa-music-site/img/the-new-way-forward.png",
+        src:
+            "https://tmonatisa.github.io/apwa-music-site/audio/the-new-way-forward.mp3",
+        link: "https://linktr.ee/APWA_Official",
+        accent: "#4a90e2",
+    },
 ];
 
 function formatTime(time) {
@@ -60,7 +67,6 @@ function formatTime(time) {
 
 function TrackPage() {
     const { trackId } = useParams();
-    const navigate = useNavigate();
     const track = tracks.find((t) => t.id === trackId) || tracks[0]; // fallback
 
     const accent = track.accent || "#d29a00";
@@ -123,6 +129,7 @@ function TrackPage() {
             <main className="card">
                 <img src={track.cover} alt={track.title} className="cover" />
 
+                <p className="subtitle">{track.title}</p>
                 <h1 className="title">{track.title}</h1>
 
                 <div className="player">
@@ -165,33 +172,7 @@ function TrackPage() {
                         linktr.ee
                     </a>
                 </div>
-
-                <button className="back-button" onClick={() => navigate("/")}>
-                    ← All tracks
-                </button>
             </main>
-        </div>
-    );
-}
-
-function HomePage() {
-    return (
-        <div className="home">
-            <h1 className="home-title">Tracks</h1>
-            <div className="home-grid">
-                {tracks.map((track) => (
-                    <Link
-                        key={track.id}
-                        to={`/track/${track.id}`}
-                        className="home-card-link"
-                    >
-                        <div className="home-card">
-                            <img src={track.cover} alt={track.title} />
-                            <div className="home-card-title">{track.title}</div>
-                        </div>
-                    </Link>
-                ))}
-            </div>
         </div>
     );
 }
@@ -199,9 +180,11 @@ function HomePage() {
 export default function App() {
     return (
         <Routes>
-            <Route path="/" element={<HomePage />} />
+            {/* default track if you visit just the root/hash */}
+            <Route path="/" element={<TrackPage />} />
+            {/* explicit per-track URLs if you want to use them */}
             <Route path="/track/:trackId" element={<TrackPage />} />
-            {/* default to first track */}
+            {/* catch-all → first track */}
             <Route path="*" element={<TrackPage />} />
         </Routes>
     );
