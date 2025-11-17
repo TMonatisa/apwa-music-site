@@ -8,7 +8,7 @@ const tracks = [
     {
         id: "new-way-forward",
         title: "The New Way Forward Theme",
-        cover: "/img/the-new-way-forward.png",
+        cover: "https://tmonatisa.github.io/apwa-music-site/img/the-new-way-forward.png",
         src: "/audio/the-new-way-forward.mp3",
         link: "https://linktr.ee/APWA_Official",
         accent: "#d29a00", // yellow/gold
@@ -16,7 +16,7 @@ const tracks = [
     {
         id: "the-great-william",
         title: "The Great William",
-        cover: "/img/second-song-cover.jpg",
+        cover: "/img/the-great-william.jpg",
         src: "/audio/second-song.mp3",
         link: "https://linktr.ee/APWA_Official",
         accent: "#04f7ffff", // blue example
