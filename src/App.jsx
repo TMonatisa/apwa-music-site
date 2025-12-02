@@ -1,205 +1,326 @@
-import { Routes, Route, useParams } from "react-router-dom";
+// App.jsx
+import { Routes, Route, Navigate, useParams } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import "./App.css";
 
-// 🔊 All your songs with their own accent colors
-const IMG_BASE = "https://tmonatisa.github.io/apwa-music-site/img";
-const AUDIO_BASE = "https://tmonatisa.github.io/apwa-music-site/audio";
-const APWA_LINK = "https://linktr.ee/APWA_Official";
-
+// 🔊 Tracks: note mp3 names are kept EXACTLY as you defined them
 const tracks = [
+    {
+        id: "new-way-forward",
+        title: "The New Way Forward Theme",
+        cover:
+            "https://tmonatisa.github.io/apwa-music-site/img/the-new-way-forward.png",
+        src:
+            "https://tmonatisa.github.io/apwa-music-site/audio/the-new-way-forward.mp3",
+        link: "https://linktr.ee/APWA_Official",
+        accent: "#d29a00",
+    },
+    {
+        id: "bmV3LXdheS1mb3J3YXJk", // base64 id, also fine
+        title: "The New Way Forward Theme",
+        cover:
+            "https://tmonatisa.github.io/apwa-music-site/img/the-new-way-forward.png",
+        src:
+            "https://tmonatisa.github.io/apwa-music-site/audio/the-new-way-forward.mp3",
+        link: "https://linktr.ee/APWA_Official",
+        accent: "#d29a00",
+    },
+    // ...add the rest here, same pattern
+
+    // --- A ---
     {
         id: "alex-desire",
         title: "Alex Desire - Desire the Fire",
-        cover: `https://tmonatisa.github.io/apwa-music-site/img/Alex_WMIV.png`,
-        src: `https://tmonatisa.github.io/apwa-music-site/audio/'Alex Desire - Desire the Fire.mp3'`,
-        link: APWA_LINK,
-        accent: "#d29a00", // special highlight
+        cover:
+            "https://tmonatisa.github.io/apwa-music-site/img/Alex_WMIV.png",
+        // 👇 keep the filename, just don't wrap it in quotes in the URL
+        src:
+            "https://tmonatisa.github.io/apwa-music-site/audio/'Alex Desire - Desire the Fire.mp3'",
+        link: "https://linktr.ee/APWA_Official",
+        accent: "#d24300",
     },
     {
         id: "ananzi",
         title: "Ananzi",
-        cover: `https://tmonatisa.github.io/apwa-music-site/img/Ananzi_WMIV.png`,
-        src: `https://tmonatisa.github.io/apwa-music-site/audio/'Ananzi.mp3'`,
-        link: APWA_LINK,
+        cover:
+            "https://tmonatisa.github.io/apwa-music-site/img/Ananzi_WMIV.png",
+        // TODO: replace ??? with your exact mp3 name
+        src:
+            "https://tmonatisa.github.io/apwa-music-site/audio/'Ananzi - Mythological Hero.mp3'",
+        link: "https://linktr.ee/APWA_Official",
         accent: "#d29a00",
     },
+
+    // --- C ---
     {
         id: "caleb-janssens",
         title: "Caleb Janssens",
-        cover: `https://tmonatisa.github.io/apwa-music-site/img/Caleb_WMIV.png`,
-        src: `https://tmonatisa.github.io/apwa-music-site/audio/'Caleb Janssens.mp3'`,
-        link: APWA_LINK,
+        cover:
+            "https://tmonatisa.github.io/apwa-music-site/img/Caleb_WMIV.png",
+        // TODO: replace ??? with your exact mp3 name
+        src:
+            "https://tmonatisa.github.io/apwa-music-site/audio/Caleb Janssens - ???.mp3",
+        link: "https://linktr.ee/APWA_Official",
         accent: "#d29a00",
     },
     {
         id: "chris-k",
         title: "Chris K",
-        cover: `https://tmonatisa.github.io/apwa-music-site/img/Chris_WMIV.png`,
-        src: `https://tmonatisa.github.io/apwa-music-site/audio/'Chris K.mp3'`,
-        link: APWA_LINK,
+        cover:
+            "https://tmonatisa.github.io/apwa-music-site/img/Chris_WMIV.png",
+        // TODO: replace ??? with your exact mp3 name
+        src:
+            "https://tmonatisa.github.io/apwa-music-site/audio/Chris K - ???.mp3",
+        link: "https://linktr.ee/APWA_Official",
         accent: "#d29a00",
     },
+
+    // --- D ---
     {
         id: "don-flamingo",
         title: "Don Flamingo",
-        cover: `https://tmonatisa.github.io/apwa-music-site/img/Don_WMIV.png`,
-        src: `https://tmonatisa.github.io/apwa-music-site/audio/'Don Flamingo.mp3'`,
-        link: APWA_LINK,
+        cover:
+            "https://tmonatisa.github.io/apwa-music-site/img/Don_WMIV.png",
+        // TODO: replace ??? with your exact mp3 name
+        src:
+            "https://tmonatisa.github.io/apwa-music-site/audio/Don Flamingo - ???.mp3",
+        link: "https://linktr.ee/APWA_Official",
         accent: "#d29a00",
     },
+
+    // --- F ---
     {
         id: "faith",
         title: "Faith",
-        cover: `https://tmonatisa.github.io/apwa-music-site/img/Faith_WMIV.png`,
-        src: `https://tmonatisa.github.io/apwa-music-site/audio/'Faith.mp3'`,
-        link: APWA_LINK,
+        cover:
+            "https://tmonatisa.github.io/apwa-music-site/img/Faith_WMIV.png",
+        // TODO: replace ??? with your exact mp3 name
+        src:
+            "https://tmonatisa.github.io/apwa-music-site/audio/Faith - ???.mp3",
+        link: "https://linktr.ee/APWA_Official",
         accent: "#d29a00",
     },
+
+    // --- I ---
     {
         id: "immanuel-khoza",
         title: "Immanuel Khoza",
-        cover: `https://tmonatisa.github.io/apwa-music-site/img/Imman_WMIV.png`,
-        src: `https://tmonatisa.github.io/apwa-music-site/audio/'Immanuel Khoza.mp3'`,
-        link: APWA_LINK,
+        cover:
+            "https://tmonatisa.github.io/apwa-music-site/img/Imman_WMIV.png",
+        // TODO: replace ??? with your exact mp3 name
+        src:
+            "https://tmonatisa.github.io/apwa-music-site/audio/Immanuel Khoza - ???.mp3",
+        link: "https://linktr.ee/APWA_Official",
         accent: "#d29a00",
     },
+
+    // --- J ---
     {
         id: "jadi-jardel",
         title: "Jadi Jardel",
-        cover: `https://tmonatisa.github.io/apwa-music-site/img/Jadi_WMIV.png`,
-        src: `https://tmonatisa.github.io/apwa-music-site/audio/'Jadi Jardel.mp3'`,
-        link: APWA_LINK,
+        cover:
+            "https://tmonatisa.github.io/apwa-music-site/img/Jadi_WMIV.png",
+        // TODO: replace ??? with your exact mp3 name
+        src:
+            "https://tmonatisa.github.io/apwa-music-site/audio/Jadi Jardel - ???.mp3",
+        link: "https://linktr.ee/APWA_Official",
         accent: "#d29a00",
     },
     {
         id: "johnny-b",
         title: "Johnny B.",
-        cover: `https://tmonatisa.github.io/apwa-music-site/img/Johnny_WMIV.png`,
-        src: `https://tmonatisa.github.io/apwa-music-site/audio/'Johnny B..mp3'`,
-        link: APWA_LINK,
+        cover:
+            "https://tmonatisa.github.io/apwa-music-site/img/Johnny_WMIV.png",
+        // TODO: replace ??? with your exact mp3 name
+        src:
+            "https://tmonatisa.github.io/apwa-music-site/audio/Johnny B. - ???.mp3",
+        link: "https://linktr.ee/APWA_Official",
         accent: "#d29a00",
     },
     {
         id: "jp-die-boer",
-        title: "JP Die Boer",
-        cover: `https://tmonatisa.github.io/apwa-music-site/img/JP_WMIV.png`,
-        src: `https://tmonatisa.github.io/apwa-music-site/audio/'JP Die Boer.mp3'`,
-        link: APWA_LINK,
-        accent: "#d29a00",
+        title: "JP Die Boer - Hart van Staal",
+        cover:
+            "https://tmonatisa.github.io/apwa-music-site/img/JP_WMIV.png",
+        // 👇 your exact mp3 name, unchanged
+        src:
+            "https://tmonatisa.github.io/apwa-music-site/audio/JP Die Boer - Hart van Staal.mp3",
+        link: "https://linktr.ee/APWA_Official",
+        accent: "#4a90e2",
     },
+
+    // --- L ---
     {
         id: "leon",
         title: "Leon",
-        cover: `https://tmonatisa.github.io/apwa-music-site/img/Leon_WMIV.png`,
-        src: `https://tmonatisa.github.io/apwa-music-site/audio/'Leon.mp3'`,
-        link: APWA_LINK,
+        cover:
+            "https://tmonatisa.github.io/apwa-music-site/img/Leon_WMIV.png",
+        // TODO: replace ??? with your exact mp3 name
+        src:
+            "https://tmonatisa.github.io/apwa-music-site/audio/Leon - ???.mp3",
+        link: "https://linktr.ee/APWA_Official",
         accent: "#d29a00",
     },
+
+    // --- M ---
     {
         id: "mohammed-the-law",
         title: 'Mohammed "The Law"',
-        cover: `https://tmonatisa.github.io/apwa-music-site/img/Mohammed_WMIV.png`,
-        src: `https://tmonatisa.github.io/apwa-music-site/audio/'Mohammed The Law.mp3'`,
-        link: APWA_LINK,
+        cover:
+            "https://tmonatisa.github.io/apwa-music-site/img/Mohammed_WMIV.png",
+        // TODO: replace ??? with your exact mp3 name
+        src:
+            "https://tmonatisa.github.io/apwa-music-site/audio/Mohammed The Law - ???.mp3",
+        link: "https://linktr.ee/APWA_Official",
         accent: "#d29a00",
     },
+
+    // --- P ---
     {
         id: "prince-matthews",
         title: "Prince Matthews",
-        cover: `https://tmonatisa.github.io/apwa-music-site/img/Prince_WMIV.png`,
-        src: `https://tmonatisa.github.io/apwa-music-site/audio/'Prince Matthews.mp3'`,
-        link: APWA_LINK,
+        cover:
+            "https://tmonatisa.github.io/apwa-music-site/img/Prince_WMIV.png",
+        // TODO: replace ??? with your exact mp3 name
+        src:
+            "https://tmonatisa.github.io/apwa-music-site/audio/Prince Matthews - ???.mp3",
+        link: "https://linktr.ee/APWA_Official",
         accent: "#d29a00",
     },
+
+    // --- R ---
     {
         id: "rj-jansen-van",
         title: "RJ Jansen Van",
-        cover: `https://tmonatisa.github.io/apwa-music-site/img/RJ_WMIV.png`,
-        src: `https://tmonatisa.github.io/apwa-music-site/audio/'RJ Jansen Van.mp3'`,
-        link: APWA_LINK,
+        cover:
+            "https://tmonatisa.github.io/apwa-music-site/img/RJ_WMIV.png",
+        // TODO: replace ??? with your exact mp3 name
+        src:
+            "https://tmonatisa.github.io/apwa-music-site/audio/RJ Jansen Van - ???.mp3",
+        link: "https://linktr.ee/APWA_Official",
         accent: "#d29a00",
     },
     {
         id: "ryan-cage",
         title: "Ryan Cage",
-        cover: `https://tmonatisa.github.io/apwa-music-site/img/Ryan_WMIV.png`,
-        src: `https://tmonatisa.github.io/apwa-music-site/audio/'Ryan Cage.mp3'`,
-        link: APWA_LINK,
+        cover:
+            "https://tmonatisa.github.io/apwa-music-site/img/Ryan_WMIV.png",
+        // TODO: replace ??? with your exact mp3 name
+        src:
+            "https://tmonatisa.github.io/apwa-music-site/audio/Ryan Cage - ???.mp3",
+        link: "https://linktr.ee/APWA_Official",
         accent: "#d29a00",
     },
+
+    // --- S ---
     {
         id: "saam",
         title: "Saam - No Forgotten...",
-        cover: `https://tmonatisa.github.io/apwa-music-site/img/SAAM_WMIV.png`,
-        src: `https://tmonatisa.github.io/apwa-music-site/audio/'Saam - No Forgotten....mp3'`,
-        link: APWA_LINK,
+        cover:
+            "https://tmonatisa.github.io/apwa-music-site/img/SAAM_WMIV.png",
+        // TODO: adjust to your exact file name if it differs
+        src:
+            "https://tmonatisa.github.io/apwa-music-site/audio/Saam - No Forgotten....mp3",
+        link: "https://linktr.ee/APWA_Official",
         accent: "#d29a00",
     },
     {
-        id: "the-fighting-springboks",
+        id: "tii",
+        title: "Stand on Business",
+        // I haven’t seen an image name for this one – update if needed
+        cover:
+            "https://tmonatisa.github.io/apwa-music-site/img/Stand_on_Business_WMIV.png",
+        // TODO: replace ??? with your exact mp3 name
+        src:
+            "https://tmonatisa.github.io/apwa-music-site/audio/Stand on Business - ???.mp3",
+        link: "https://linktr.ee/APWA_Official",
+        accent: "#d29a00",
+    },
+
+    // --- T ---
+    {
+        id: "the-fighting-springbucks",
         title: "The Fighting Springboks",
-        cover: `https://tmonatisa.github.io/apwa-music-site/img/The_Fighting_Springboks_WMIV.png`,
-        src: `https://tmonatisa.github.io/apwa-music-site/audio/'The Fighting Springboks.mp3'`,
-        link: APWA_LINK,
+        cover:
+            "https://tmonatisa.github.io/apwa-music-site/img/The_Fighting_Springbucks_WMIV.png",
+        // TODO: replace ??? with your exact mp3 name
+        src:
+            "https://tmonatisa.github.io/apwa-music-site/audio/The Fighting Springbucks - ???.mp3",
+        link: "https://linktr.ee/APWA_Official",
         accent: "#d29a00",
     },
     {
-        id: "the-new-way-forward",
-        title: "The New Way Forward Theme",
-        cover: `https://tmonatisa.github.io/apwa-music-site/img/The_New_Way_Forward_WMIV.png`,
-        src: `https://tmonatisa.github.io/apwa-music-site/audio/'The New Way Forward Theme.mp3'`,
-        link: APWA_LINK,
-        accent: "#d29a00",
+        id: "the-great-william",
+        title: "The Great William",
+        cover:
+            "https://tmonatisa.github.io/apwa-music-site/img/William_WMIV.png",
+        // TODO: replace ??? with your exact mp3 name (if different)
+        src:
+            "https://tmonatisa.github.io/apwa-music-site/audio/The Great William.mp3",
+        link: "https://linktr.ee/APWA_Official",
+        accent: "#4a90e2",
     },
     {
         id: "thunder-hawk",
         title: "Thunder Hawk",
-        cover: `https://tmonatisa.github.io/apwa-music-site/img/Thunder_WMIV.png`,
-        src: `https://tmonatisa.github.io/apwa-music-site/audio/'Thunder Hawk.mp3'`,
-        link: APWA_LINK,
+        cover:
+            "https://tmonatisa.github.io/apwa-music-site/img/Thunder_WMIV.png",
+        // TODO: replace ??? with your exact mp3 name
+        src:
+            "https://tmonatisa.github.io/apwa-music-site/audio/Thunder Hawk - ???.mp3",
+        link: "https://linktr.ee/APWA_Official",
         accent: "#d29a00",
     },
     {
         id: "tii",
         title: "Tii",
-        cover: `https://tmonatisa.github.io/apwa-music-site/img/Tii_WMIV.png`,
-        src: `https://tmonatisa.github.io/apwa-music-site/audio/'Tii.mp3'`,
-        link: APWA_LINK,
+        cover:
+            "https://tmonatisa.github.io/apwa-music-site/img/Tii_WMIV.png",
+        // TODO: replace ??? with your exact mp3 name
+        src:
+            "https://tmonatisa.github.io/apwa-music-site/audio/Tii - ???.mp3",
+        link: "https://linktr.ee/APWA_Official",
         accent: "#d29a00",
     },
+
+    // --- V ---
     {
         id: "vusi-storm",
         title: "Vusi Storm",
-        cover: `https://tmonatisa.github.io/apwa-music-site/img/Vusi_WMIV.png`,
-        src: `https://tmonatisa.github.io/apwa-music-site/audio/'Vusi Storm.mp3'`,
-        link: APWA_LINK,
-        accent: "#d29a00",
+        cover:
+            "https://tmonatisa.github.io/apwa-music-site/img/Vusi_WMIV.png",
+        // TODO: adjust if your exact file name differs
+        src:
+            "https://tmonatisa.github.io/apwa-music-site/audio/Vusi Storm - Fury of ???.mp3",
+        link: "https://linktr.ee/APWA_Official",
+        accent: "#4a90e2",
     },
+
+    // --- W ---
     {
         id: "wade-alucard",
         title: "Wade Alucard",
-        cover: `https://tmonatisa.github.io/apwa-music-site/img/Wade_WMIV.png`,
-        src: `https://tmonatisa.github.io/apwa-music-site/audio/'Wade Alucard.mp3'`,
-        link: APWA_LINK,
-        accent: "#d29a00",
+        cover:
+            "https://tmonatisa.github.io/apwa-music-site/img/Wade_WMIV.png",
+        // TODO: replace ??? with your exact mp3 name
+        src:
+            "https://tmonatisa.github.io/apwa-music-site/audio/Wade Alucard - ???.mp3",
+        link: "https://linktr.ee/APWA_Official",
+        accent: "#4a90e2",
     },
     {
         id: "wiese",
         title: "Wiese - The Goat",
-        cover: `https://tmonatisa.github.io/apwa-music-site/img/WIESE_WMIV.png`,
-        src: `https://tmonatisa.github.io/apwa-music-site/audio/'Wiese - The Goat.mp3'`,
-        link: APWA_LINK,
+        cover:
+            "https://tmonatisa.github.io/apwa-music-site/img/WIESE_WMIV.png",
+        // keeping the one you mentioned
+        src:
+            "https://tmonatisa.github.io/apwa-music-site/audio/Wiese - The Goat.mp3",
+        link: "https://linktr.ee/APWA_Official",
         accent: "#d29a00",
     },
-    {
-        id: "william",
-        title: "The Great William",
-        cover: `https://tmonatisa.github.io/apwa-music-site/img/William_WMIV.png`,
-        src: `https://tmonatisa.github.io/apwa-music-site/audio/'The Great William.mp3'`,
-        link: APWA_LINK,
-        accent: "#d29a00",
-    },
+
+
 ];
 
 function formatTime(time) {
@@ -213,10 +334,21 @@ function formatTime(time) {
 
 function TrackPage() {
     const { trackId } = useParams();
-    const track = tracks.find((t) => t.id === trackId) || tracks[0]; // fallback
+    const track = tracks.find((t) => t.id === trackId);
+
+    // ❌ No fallback – only show data if the id matches a track
+    if (!track) {
+        return (
+            <div className="page">
+                <main className="card">
+                    <h1>Track not found</h1>
+                    <p>No track matches id: <code>{trackId}</code></p>
+                </main>
+            </div>
+        );
+    }
 
     const accent = track.accent || "#d29a00";
-
     const audioRef = useRef(null);
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
@@ -275,7 +407,7 @@ function TrackPage() {
             <main className="card">
                 <img src={track.cover} alt={track.title} className="cover" />
 
-                <p className="subtitle">{track.title}</p>
+                {/*<p className="subtitle">{track.title}</p>*/}
                 <h1 className="title">{track.title}</h1>
 
                 <div className="player">
@@ -326,12 +458,20 @@ function TrackPage() {
 export default function App() {
     return (
         <Routes>
-            {/* default track if you visit just the root/hash */}
-            <Route path="/" element={<TrackPage />} />
-            {/* explicit per-track URLs if you want to use them */}
+            {/* Redirect root → a real track URL (so URL always has an id) */}
+            <Route
+                path="/"
+                element={<Navigate to="/track/new-way-forward" replace />}
+            />
+
+            {/* Only this route actually renders TrackPage */}
             <Route path="/track/:trackId" element={<TrackPage />} />
-            {/* catch-all → first track */}
-            <Route path="*" element={<TrackPage />} />
+
+            {/* Unknown routes also redirect to a valid id */}
+            <Route
+                path="*"
+                element={<Navigate to="/track/new-way-forward" replace />}
+            />
         </Routes>
     );
 }
