@@ -484,7 +484,7 @@ export default function App() {
 
     useEffect(() => {
         // how long to show the loading screen (ms)
-        const timer = setTimeout(() => setIsLoading(false), 2000);
+        const timer = setTimeout(() => setIsLoading(false), 5000);
         return () => clearTimeout(timer);
     }, []);
 
