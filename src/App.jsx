@@ -2,6 +2,7 @@
 import { Routes, Route, Navigate, useParams } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import "./App.css";
+import logo from "../public/img/APWA_Full_Logo_Shadow_2025.png";
 
 // 🔊 Tracks: note mp3 names are kept EXACTLY as you defined them
 const tracks = [
@@ -334,6 +335,18 @@ const tracks = [
 
 ];
 
+function LoadingScreen() {
+    return (
+        <div className="loading-screen">
+            <img
+                src={logo}
+                alt="APWA Wrestling Entertainment"
+                className="loading-logo"
+            />
+        </div>
+    );
+}
+
 function formatTime(time) {
     if (!time || Number.isNaN(time)) return "00:00";
     const minutes = Math.floor(time / 60);
@@ -467,6 +480,18 @@ function TrackPage() {
 }
 
 export default function App() {
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        // how long to show the loading screen (ms)
+        const timer = setTimeout(() => setIsLoading(false), 2000);
+        return () => clearTimeout(timer);
+    }, []);
+
+    if (isLoading) {
+        return <LoadingScreen />;
+    }
+
     return (
         <Routes>
             {/* Redirect root → a real track URL (so URL always has an id) */}
@@ -486,3 +511,4 @@ export default function App() {
         </Routes>
     );
 }
+

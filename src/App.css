@@ -224,3 +224,29 @@
     font-size: 1.5rem;
   }
 }
+/* --- Loading screen --- */
+.loading-screen {
+  background: #000;          /* black background */
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-logo {
+  width: 70vw;
+  max-width: 600px;
+  animation: apwaPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes apwaPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08); /* grow */
+  }
+  100% {
+    transform: scale(1);    /* shrink back */
+  }
+}
