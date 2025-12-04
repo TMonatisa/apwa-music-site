@@ -156,7 +156,7 @@ const tracks = [
         src:
             "https://tmonatisa.github.io/apwa-music-site/audio/JP Die Boer - Hart van Staal.mp3",
         link: "https://linktr.ee/APWA_Official",
-        accent: "#4a90e2",
+        accent: "#d29a00",
     },
 
     // --- L ---
@@ -204,13 +204,13 @@ const tracks = [
     // --- R ---
     {
         id: "rj-jansen-van",
-        title: "RJ Jansen Van",
+        title: "RJ Jansen Van Rensburg",
         subTitle: "Man Van Die Plaas",
         cover:
             "https://tmonatisa.github.io/apwa-music-site/img/RJ_WMIV.png",
         // TODO: replace ??? with your exact mp3 name
         src:
-            "https://tmonatisa.github.io/apwa-music-site/audio/RJ Jansen Van - Man Van Die Plaas.mp3",
+            "https://tmonatisa.github.io/apwa-music-site/audio/RJ Jansen Van Rensburg - Man Van Die Plaas.mp3",
         link: "https://linktr.ee/APWA_Official",
         accent: "#d29a00",
     },
@@ -264,7 +264,7 @@ const tracks = [
         src:
             "https://tmonatisa.github.io/apwa-music-site/audio/Just Find Him.mp3",
         link: "https://linktr.ee/APWA_Official",
-        accent: "#4a90e2",
+        accent: "#d29a00",
     },
     {
         id: "thunder-hawk",
@@ -302,7 +302,7 @@ const tracks = [
         src:
             "https://tmonatisa.github.io/apwa-music-site/audio/Vusi Storm - Fury of the Storm.mp3",
         link: "https://linktr.ee/APWA_Official",
-        accent: "#4a90e2",
+        accent: "#d29a00",
     },
 
     // --- W ---
@@ -316,7 +316,7 @@ const tracks = [
         src:
             "https://tmonatisa.github.io/apwa-music-site/audio/Wade Alucard - DEXDMXNS PXRXDISE.mp3",
         link: "https://linktr.ee/APWA_Official",
-        accent: "#4a90e2",
+        accent: "#d29a00",
     },
     {
         id: "wiese",
